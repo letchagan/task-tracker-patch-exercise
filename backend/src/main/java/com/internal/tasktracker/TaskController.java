@@ -33,7 +33,11 @@ public class TaskController {
             @RequestParam(required = false, defaultValue = "10") int pageSize) {
 
         String query = q == null ? "" : q.trim();
-        String searchTerm = "%" + query.toLowerCase(Locale.ROOT) + "%";
+        String escapedQuery = query
+                .replace("\\", "\\\\")
+                .replace("%", "\\%")
+                .replace("_", "\\_");
+        String searchTerm = "%" + escapedQuery.toLowerCase(Locale.ROOT) + "%";
 
         // Unknown status is a client error (400), not a server error (500).
         String normalizedStatus = null;
