@@ -273,8 +273,36 @@ body {
   to { transform: rotate(360deg); }
 }
 
+/* Skeleton Loading */
+.skeleton-row td {
+  padding: 0.95rem 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.skeleton-box {
+  background: linear-gradient(90deg, var(--line) 25%, #f4f6fa 50%, var(--line) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+  height: 1em;
+  opacity: 0.6;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton-box.id { width: 3rem; }
+.skeleton-box.title { width: 60%; height: 1.1em; margin-bottom: 0.4rem; }
+.skeleton-box.desc { width: 85%; height: 0.8em; }
+.skeleton-box.badge { width: 5rem; height: 1.5rem; border-radius: 999px; }
+.skeleton-box.text { width: 4rem; }
+.skeleton-box.assignee { width: 6rem; height: 1.5rem; border-radius: 1rem; }
+
 @media (prefers-reduced-motion: reduce) {
   .spinner { animation-duration: 2s; }
+  .skeleton-box { animation: none; background: var(--line); }
   .search-input, .status-filter { transition: none; }
 }
 
