@@ -9,15 +9,6 @@ function titleCase(value) {
 }
 
 export default function TaskTable({ tasks, loading, error }) {
-  if (loading) {
-    return (
-      <div className="state-message" role="status">
-        <span className="spinner" aria-hidden="true" />
-        Loading tasks…
-      </div>
-    );
-  }
-
   if (error) {
     return (
       <div className="state-message error" role="alert">
@@ -26,7 +17,7 @@ export default function TaskTable({ tasks, loading, error }) {
     );
   }
 
-  if (!tasks || tasks.length === 0) {
+  if (!loading && (!tasks || tasks.length === 0)) {
     return (
       <div className="state-message">
         No tasks match your search. Try a different word or clear the status filter.
@@ -47,8 +38,22 @@ export default function TaskTable({ tasks, loading, error }) {
           </tr>
         </thead>
         <tbody>
-          {tasks.map((task) => (
-            <tr key={task.id} className={priorityClass(task.priority)}>
+          {loading ? (
+            Array.from({ length: 10 }).map((_, index) => (
+              <tr key={`skeleton-${index}`} className="skeleton-row">
+                <td className="col-id"><div className="skeleton-box id" /></td>
+                <td>
+                  <div className="skeleton-box title" />
+                  <div className="skeleton-box desc" />
+                </td>
+                <td><div className="skeleton-box badge" /></td>
+                <td><div className="skeleton-box text" /></td>
+                <td><div className="skeleton-box assignee" /></td>
+              </tr>
+            ))
+          ) : (
+            tasks.map((task) => (
+              <tr key={task.id} className={priorityClass(task.priority)}>
               <td className="col-id">#{task.id}</td>
               <td>
                 <div className="task-title">{task.title}</div>
@@ -71,7 +76,8 @@ export default function TaskTable({ tasks, loading, error }) {
                 )}
               </td>
             </tr>
-          ))}
+            ))
+          )}
         </tbody>
       </table>
     </div>
