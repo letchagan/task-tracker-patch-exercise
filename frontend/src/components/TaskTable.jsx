@@ -11,9 +11,37 @@ function titleCase(value) {
 export default function TaskTable({ tasks, loading, error }) {
   if (loading) {
     return (
-      <div className="state-message" role="status">
-        <span className="spinner" aria-hidden="true" />
-        Loading tasks…
+      <div className="table-wrap" role="status" aria-label="Loading tasks">
+        <table className="task-table skeleton-table">
+          <thead>
+            <tr>
+              <th className="col-id">ID</th>
+              <th>Task</th>
+              <th>Status</th>
+              <th>Priority</th>
+              <th>Assignee</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Array.from({ length: 5 }).map((_, index) => (
+              <tr key={index}>
+                <td className="col-id"><div className="skeleton skeleton-text" style={{ width: '2rem' }}></div></td>
+                <td>
+                  <div className="skeleton skeleton-text" style={{ width: '12rem', marginBottom: '0.5rem' }}></div>
+                  <div className="skeleton skeleton-text" style={{ width: '20rem' }}></div>
+                </td>
+                <td><div className="skeleton skeleton-badge"></div></td>
+                <td><div className="skeleton skeleton-text" style={{ width: '4rem' }}></div></td>
+                <td>
+                  <div className="assignee">
+                    <div className="skeleton skeleton-avatar"></div>
+                    <div className="skeleton skeleton-text" style={{ width: '5rem' }}></div>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     );
   }

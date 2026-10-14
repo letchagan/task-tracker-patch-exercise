@@ -17,7 +17,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     @Query("SELECT t FROM Task t "
          + "WHERE t.archived = false "
          + "AND (:status IS NULL OR t.status = :status) "
-         + "AND (LOWER(t.title) LIKE :term OR LOWER(t.description) LIKE :term)")
+         + "AND (LOWER(t.title) LIKE :term ESCAPE '\\' OR LOWER(t.description) LIKE :term ESCAPE '\\')")
     Page<Task> searchTasks(@Param("term") String term,
                            @Param("status") String status,
                            Pageable pageable);

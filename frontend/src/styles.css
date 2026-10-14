@@ -240,6 +240,39 @@ body {
   color: var(--ink-faint);
 }
 
+/* Skeletons */
+.skeleton {
+  background: var(--line);
+  border-radius: 4px;
+  animation: pulse 1.5s infinite;
+}
+
+.skeleton-text {
+  height: 1rem;
+}
+
+.skeleton-badge {
+  width: 5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+}
+
+.skeleton-avatar {
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+}
+
 /* Loading / empty / error */
 .state-message {
   display: flex;
