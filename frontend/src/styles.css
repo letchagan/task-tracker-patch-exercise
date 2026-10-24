@@ -224,6 +224,32 @@ body {
   gap: 0.55rem;
 }
 
+/* Skeleton Loading State */
+.skeleton-row {
+  /* Default rail color for skeletons */
+  box-shadow: inset 4px 0 0 var(--line) !important;
+}
+
+.skeleton-box {
+  background-color: var(--line);
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.id-box { width: 40px; height: 1.1rem; }
+.title-box { width: 60%; height: 1.2rem; margin-bottom: 0.4rem; }
+.desc-box { width: 85%; height: 0.9rem; }
+.badge-box { width: 80px; height: 1.4rem; border-radius: 999px; }
+.priority-box { width: 60px; height: 1.1rem; }
+.avatar-box { width: 1.7rem; height: 1.7rem; border-radius: 50%; flex-shrink: 0; }
+.text-box { width: 90px; height: 1.1rem; }
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
 .avatar {
   display: inline-grid;
   place-items: center;
